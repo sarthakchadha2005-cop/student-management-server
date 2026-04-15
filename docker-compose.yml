@@ -1,0 +1,29 @@
+services:
+  web:
+    image: webdevops/php-apache:8.2
+    ports:
+      - "8080:80"
+    volumes:
+      - D:\web_db:/var/www/html    
+    environment:
+    - WEB_DOCUMENT_ROOT=/var/www/html
+    networks:
+      - mynet
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: 8879
+      MYSQL_USER:  student_user
+      MYSQL_PASSWORD: 8879
+      MYSQL_DATABASE: student_db
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - mynet
+
+volumes:
+  db_data:
+
+networks:
+  mynet:
